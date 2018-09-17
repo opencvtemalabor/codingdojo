@@ -11,7 +11,11 @@ namespace AruhazFeladat
         //Every product is worth it's position in the alphabet, eg. "A"=1, "Z"=26, "AB"=3...
         internal int Eval(string v)
         {
-            return 0;
+            int sum = 0;
+            for (int i = 0; i < v.Length; i++){
+                sum += (int)v[i] - (int)'A' + 1;
+            }
+            return sum;
         }
     }
 }
