@@ -10,7 +10,7 @@ namespace AruhazFeladat
 
         internal int Eval(string v)
         {
-            throw new NotImplementedException();
+            return 0;
         }
     }
 }
