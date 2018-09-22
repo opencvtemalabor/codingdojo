@@ -24,7 +24,7 @@ namespace AruhazFeladat
         public void IgnoreLowerCase()
         {
             var s = new Supermarket();
-            Assert.AreEqual(87, s.Eval("ELOSZIA"));
+            Assert.AreEqual(87, s.Eval("hELOSZIA"));
         }
     }
 }

@@ -13,6 +13,8 @@ namespace AruhazFeladat
         {
             int sum = 0;
             for (int i = 0; i < v.Length; i++){
+                if (char.IsLower(v[i]))
+                    continue;
                 sum += (int)v[i] - (int)'A' + 1;
             }
             return sum;
