@@ -5,14 +5,14 @@ namespace AruhazFeladat
 {
     internal class Supermarket
     {
-        private Dictionary<char, LetterPrice> products;
+        private Dictionary<char, int> products;
         public Supermarket()
         {
-            products = new Dictionary<char, LetterPrice>();
+            products = new Dictionary<char, int>();
 
             for (int i = 0; i < 26; i++)
             {
-                products.Add((char)('A' + i), new LetterPrice { Letter = (char)('A' + i) , BasePrice = i+1, Disount = 0 });
+                products.Add((char)('A' + i), i + 1 );
             }
         }
 
@@ -23,18 +23,13 @@ namespace AruhazFeladat
             for (int i = 0; i < v.Length; i++){
                 if (char.IsLower(v[i]))
                     continue;
-                LetterPrice price;
+                int price;
                 if(products.TryGetValue(v[i], out price))
                 {
-                    sum += price.CalculatedPrice;
+                    sum += price;
                 }
             }
             return sum;
-        }
-
-        public void AddDiscount(char letter, double discount)
-        {
-
         }
     }
 }
