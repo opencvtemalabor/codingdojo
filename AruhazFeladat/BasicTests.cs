@@ -26,5 +26,13 @@ namespace AruhazFeladat
             var s = new Supermarket();
             Assert.AreEqual(87, s.Eval("hELOSZIA"));
         }
+
+        [TestMethod]
+        public void CheckDiscount()
+        {
+            Supermarket s = new Supermarket();
+            s.AddDiscount('J', 0.2);
+            Assert.AreEqual(9, s.Eval("AJ"));
+        }
     }
 }
