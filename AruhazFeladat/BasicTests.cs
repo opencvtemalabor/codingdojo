@@ -31,7 +31,7 @@ namespace AruhazFeladat
         public void PayForTwoGetThree()
         {
             var s = new Supermarket();
-            Assert.AreEqual( 80, s.Eval("HELLOBELLOO"));
+            Assert.AreEqual( 86, s.Eval("HELLOBELLOO"));
         }
     }
 }
