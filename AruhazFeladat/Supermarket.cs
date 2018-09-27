@@ -6,13 +6,16 @@ namespace AruhazFeladat
     internal class Supermarket
     {
         private Dictionary<char, int> products;
+        private List<char> payForTwo;
         public Supermarket()
         {
             products = new Dictionary<char, int>();
+            payForTwo = new List<char>();
 
             for (int i = 0; i < 26; i++)
             {
                 products.Add((char)('A' + i), i + 1 );
+                payForTwo.Add((char)('A' + i));
             }
         }
 
@@ -28,6 +31,26 @@ namespace AruhazFeladat
                 {
                     sum += price;
                 }
+            }
+
+            int counter = 0;
+            for (int i = 0; i < payForTwo.Count; i++)
+            {
+                for (int j = 0; j < v.Length; j++)
+                {
+                    if (payForTwo[i] == v[j])
+                    {
+                        counter++;
+                        if (counter == 3)
+                        {
+                            int price;
+                            products.TryGetValue(v[j], out price);
+                            sum = sum - price;
+                            counter = 0;
+                        }
+                    }
+                }
+                counter = 0;
             }
             return sum;
         }
