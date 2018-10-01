@@ -40,5 +40,12 @@ namespace AruhazFeladat
             var s = new Supermarket();
             Assert.AreNotEqual(2, s.Eval("AAA"));
         }
+
+        [TestMethod]
+        public void SpecialBundle()
+        {
+            var s = new Supermarket();
+            Assert.IsTrue(s.Eval("ABC") < s.Eval("AB") + s.Eval("C"));
+        }
     }
 }
