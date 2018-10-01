@@ -33,5 +33,12 @@ namespace AruhazFeladat
             var s = new Supermarket();
             Assert.AreEqual( 86, s.Eval("HELLOBELLOO"));
         }
+
+        [TestMethod]
+        public void PayForTwoGetThreeOnSpecificItems()
+        {
+            var s = new Supermarket();
+            Assert.AreNotEqual(2, s.Eval("AAA"));
+        }
     }
 }
