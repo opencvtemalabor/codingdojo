@@ -38,7 +38,7 @@ namespace AruhazFeladat
             {
                 for (int j = 0; j < v.Length; j++)
                 {
-                    if (payForTwo[i] == v[j])
+                    if (payForTwo[i] == v[j] && !v[j].Equals('A'))
                     {
                         counter++;
                         if (counter == 3)
