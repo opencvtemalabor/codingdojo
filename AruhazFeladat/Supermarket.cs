@@ -19,8 +19,7 @@ namespace AruhazFeladat
             }
         }
 
-        //Every product is worth it's position in the alphabet, eg. "A"=1, "Z"=26, "AB"=3...
-        internal double Eval(string v)
+        internal double InitialPrize(string v)
         {
             double sum = 0;
             for (int i = 0; i < v.Length; i++){
@@ -33,6 +32,11 @@ namespace AruhazFeladat
                 }
             }
 
+            return sum;
+        }
+
+        internal double PayForTwoDiscounted(double sum, string v)
+        {
             int counter = 0;
             for (int i = 0; i < payForTwo.Count; i++)
             {
@@ -52,7 +56,14 @@ namespace AruhazFeladat
                 }
                 counter = 0;
             }
+
             return sum;
+        }
+        
+        //Every product is worth it's position in the alphabet, eg. "A"=1, "Z"=26, "AB"=3...
+        internal double Eval(string v)
+        {
+            return PayForTwoDiscounted(InitialPrize(v), v);
         }
     }
 }
