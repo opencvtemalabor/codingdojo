@@ -42,5 +42,12 @@ namespace AruhazFeladat
         {
             Assert.IsTrue(s.Eval("ABC") < s.Eval("AB") + s.Eval("C"));
         }
+
+        [TestMethod]
+        public void PreferPayForTwoGetThree()
+        {
+            Assert.AreEqual(8, s.Eval("BBBAC"));
+            Assert.AreEqual(9, s.Eval("CCCAB"));
+        }
     }
 }
