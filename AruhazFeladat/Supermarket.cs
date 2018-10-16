@@ -12,11 +12,14 @@ namespace AruhazFeladat
         private List<char> payForTwo;
         //Stores product bundles and respective discount amounts
         private Dictionary<string, double> bundles;
+        private bool preferPayForTwoGetThree;
+
         public Supermarket()
         {
             products = new Dictionary<char, int>();
             payForTwo = new List<char>();
             bundles = new Dictionary<string, double>();
+            preferPayForTwoGetThree = false;
 
             for (int i = 0; i < 26; i++)
             {
@@ -65,6 +68,7 @@ namespace AruhazFeladat
                             products.TryGetValue(v[j], out price);
                             sum = sum - price;  // Kristóf: -=
                             counter = 0;
+                            preferPayForTwoGetThree = true;
                         }
                     }
                 }
@@ -77,7 +81,10 @@ namespace AruhazFeladat
         //Every product is worth it's position in the alphabet, eg. "A"=1, "Z"=26, "AB"=3...
         internal double Eval(string v)
         {
-            return PayForTwoDiscounted(InitialPrize(v), v) - ApplyBundles(v);
+            double value = PayForTwoDiscounted(InitialPrize(v), v);
+            if(!preferPayForTwoGetThree)
+                value -= ApplyBundles(v);
+            return value;
         }
 
         internal double ApplyBundles(string v)
