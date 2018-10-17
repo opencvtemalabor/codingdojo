@@ -7,6 +7,7 @@ namespace AruhazFeladat
     public class BasicTests
     {
         Supermarket s = new Supermarket();
+
        [TestMethod]
         public void Instantiation()
         {
@@ -28,24 +29,30 @@ namespace AruhazFeladat
         [TestMethod]
         public void PayForTwoGetThree()
         {
+            s.AddAllItemsToPayForTwo();
             Assert.AreEqual( 86, s.Eval("HELLOBELLOO"));
         }
 
         [TestMethod]
         public void PayForTwoGetThreeOnSpecificItems()
         {
+            s.AddAllItemsToPayForTwo();
+            s.RemoveFromPayForTwo('A');
             Assert.AreNotEqual(2, s.Eval("AAA"));
         }
 
         [TestMethod]
         public void SpecialBundle()
         {
+            s.AddBundle("ABC", 1);
             Assert.IsTrue(s.Eval("ABC") < s.Eval("AB") + s.Eval("C"));
         }
 
         [TestMethod]
         public void PreferPayForTwoGetThree()
         {
+            s.AddAllItemsToPayForTwo();
+            s.AddBundle("ABC", 1);
             Assert.AreEqual(8, s.Eval("BBBAC"));
             Assert.AreEqual(9, s.Eval("CCCAB"));
         }
