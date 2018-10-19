@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AruhazFeladat
@@ -29,15 +30,20 @@ namespace AruhazFeladat
         [TestMethod]
         public void PayForTwoGetThree()
         {
-            s.AddAllItemsToPayForTwo();
+            PayForTwoDiscount payForTwoDiscount = new PayForTwoDiscount();
+            s.RegisterDiscount(payForTwoDiscount);
+            payForTwoDiscount.AddAllItemsToPayForTwo();    
             Assert.AreEqual( 86, s.Eval("HELLOBELLOO"));
+            Trace.WriteLine("{0}", s.Eval("HELLOBELLOO").ToString());
         }
 
         [TestMethod]
         public void PayForTwoGetThreeOnSpecificItems()
         {
-            s.AddAllItemsToPayForTwo();
-            s.RemoveFromPayForTwo('A');
+            PayForTwoDiscount payForTwoDiscount = new PayForTwoDiscount();
+            s.RegisterDiscount(payForTwoDiscount);
+            payForTwoDiscount.AddAllItemsToPayForTwo();
+            payForTwoDiscount.RemoveFromPayForTwo('A');
             Assert.AreNotEqual(2, s.Eval("AAA"));
         }
 
@@ -51,7 +57,9 @@ namespace AruhazFeladat
         [TestMethod]
         public void PreferPayForTwoGetThree()
         {
-            s.AddAllItemsToPayForTwo();
+            PayForTwoDiscount payForTwoDiscount = new PayForTwoDiscount();
+            s.RegisterDiscount(payForTwoDiscount);
+            payForTwoDiscount.AddAllItemsToPayForTwo();
             s.RegisterDiscount(new BundleDiscount("ABC", 1));
             Assert.AreEqual(8, s.Eval("BBBAC"));
             Assert.AreEqual(9, s.Eval("CCCAB"));

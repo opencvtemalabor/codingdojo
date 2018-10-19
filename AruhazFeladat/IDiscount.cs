@@ -4,6 +4,6 @@ namespace AruhazFeladat
 {
     public interface IDiscount
     {
-        double CalculateDiscount(List<char> order);
+        double CalculateDiscount(List<char> order, Dictionary<char, int> products);
     }
 }
