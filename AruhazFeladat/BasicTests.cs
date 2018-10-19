@@ -44,7 +44,7 @@ namespace AruhazFeladat
         [TestMethod]
         public void SpecialBundle()
         {
-            s.AddBundle("ABC", 1);
+            s.RegisterDiscount(new BundleDiscount("ABC", 1));
             Assert.IsTrue(s.Eval("ABC") < s.Eval("AB") + s.Eval("C"));
         }
 
@@ -52,7 +52,7 @@ namespace AruhazFeladat
         public void PreferPayForTwoGetThree()
         {
             s.AddAllItemsToPayForTwo();
-            s.AddBundle("ABC", 1);
+            s.RegisterDiscount(new BundleDiscount("ABC", 1));
             Assert.AreEqual(8, s.Eval("BBBAC"));
             Assert.AreEqual(9, s.Eval("CCCAB"));
         }

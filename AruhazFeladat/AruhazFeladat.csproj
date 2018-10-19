@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicTests.cs" />
+    <Compile Include="BundleDiscount.cs" />
+    <Compile Include="IDiscount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Supermarket.cs" />
   </ItemGroup>

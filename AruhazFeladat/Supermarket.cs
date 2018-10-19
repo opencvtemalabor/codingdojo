@@ -11,13 +11,13 @@ namespace AruhazFeladat
         private Dictionary<char, int> products;
         private List<char> payForTwo;
         //Stores product bundles and respective discount amounts
-        private Dictionary<string, double> bundles;
+        private List<IDiscount> discounts;
 
         public Supermarket()
         {
             products = new Dictionary<char, int>();
             payForTwo = new List<char>();
-            bundles = new Dictionary<string, double>();
+            discounts = new List<IDiscount>();
 
             for (int i = 0; i < 26; i++)
             {
@@ -77,61 +77,22 @@ namespace AruhazFeladat
             {
                 value = PayForTwoDiscounted(value, order);
             }
-            else if (bundles.Count != 0)
+            else if (discounts.Count != 0)
             {
-                value -= ApplyBundles(order);
+                List<char> orderList = new List<char>(order);
+
+                foreach(var d in discounts)
+                {
+                    value -= d.CalculateDiscount(orderList);
+                }
             }
 
             return value;
         }
 
-        internal double ApplyBundles(string order)
+        public void RegisterDiscount(IDiscount discount)
         {
-            double discount = 0;
-
-            List<char> products = new List<char>(order.ToCharArray());
-            List<string> bundleproducts = new List<string>(bundles.Keys);
-
-            for (int i = 0; i < bundleproducts.Count; i++)
-            {
-                if (HasBundle(order, bundleproducts[i]))
-                {
-                    discount += bundles[bundleproducts[i]];
-                    foreach (char c in bundleproducts[i])
-                    {
-                        products.Remove(c);
-                        int j = order.IndexOf(c);
-                        order = order.Remove(j, 1);
-                    }
-                    i--;
-                }
-            }
-            return discount;
-        }
-
-        internal bool HasBundle(string order, string bundle)
-        {
-            //  Már másodjára kell a tömbör készíteni string-ből, majd abból listát...
-            //  Lehet, hogy már eleve jobb lenne listaként tárolni? Folyton konvertálgatunk.
-            List<char> products = new List<char>(order.ToCharArray());
-            foreach (char c in bundle)
-            {
-                if (products.Contains(c))
-                {
-                    products.Remove(c);
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        public void AddBundle(string bundle, double value)
-        {
-            bundles.Add(bundle, value);
+            discounts.Add(discount);
         }
 
         public void AddPayForTwo(char item)
