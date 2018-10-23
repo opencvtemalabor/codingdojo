@@ -25,6 +25,7 @@ namespace AruhazFeladat
         {
             int counter = 0;
             double sumDiscount = 0;
+            this.order = order.ToString();
 
             for (int i = 0; i < payForTwo.Count; i++)
             {
@@ -36,7 +37,7 @@ namespace AruhazFeladat
                         if (counter == 3)
                         {
                             products.TryGetValue(order[j], out int price);
-                            sumDiscount -= price;
+                            sumDiscount += price;
                             counter = 0;
                         }
                     }
@@ -63,6 +64,11 @@ namespace AruhazFeladat
         public void RemoveFromPayForTwo(char item)
         {
             payForTwo.Remove(item);
+        }
+
+        public string AffectedProducts()
+        {
+            return payForTwo.ToString();
         }
     }
 }

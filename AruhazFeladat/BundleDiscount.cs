@@ -17,6 +17,11 @@ namespace AruhazFeladat
             this.discount = discount;
         }
 
+        public string AffectedProducts()
+        {
+            return bundle;
+        }
+
         public double CalculateDiscount(List<char> order, Dictionary<char, int> products)
         {
             double sumDiscount = 0;

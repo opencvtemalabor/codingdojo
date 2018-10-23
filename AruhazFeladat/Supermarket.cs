@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AruhazFeladat
 {
@@ -9,14 +11,12 @@ namespace AruhazFeladat
         //  interfészen keresztül be lehetne regisztrálni és használni. Pl.
         //  Supermarket.RegisterDiscount(new BundleDiscount("DEF",3));
         private Dictionary<char, int> products;
-        private List<char> payForTwo;
         //Stores product bundles and respective discount amounts
         private List<IDiscount> discounts;
 
         public Supermarket()
         {
             products = new Dictionary<char, int>();
-            payForTwo = new List<char>();
             discounts = new List<IDiscount>();
 
             for (int i = 0; i < 26; i++)
@@ -42,75 +42,43 @@ namespace AruhazFeladat
             return sum;
         }
 
-        internal double PayForTwoDiscounted(double sum, string order)
-        {
-            int counter = 0;
-
-            for (int i = 0; i < payForTwo.Count; i++)
-            {
-                for (int j = 0; j < order.Length; j++)
-                {
-                    if (payForTwo[i] == order[j])
-                    {
-                        counter++;
-                        if (counter == 3)
-                        {
-                            products.TryGetValue(order[j], out int price);
-                            sum -= price;
-                            counter = 0;
-                        }
-                    }
-                }
-                counter = 0;
-            }
-
-            return sum;
-        }
 
         //Every product is worth it's position in the alphabet, eg. "A"=1, "Z"=26, "AB"=3...
         internal double Eval(string order)
         {
             double value = InitialPrize(order);
-
-            //PayForTwo preferálása
-            if (payForTwo.Count != 0)
+            List<char> orderList = new List<char>(order);
+            string affectedProducts = "";
+            
+            foreach(var d in discounts)
             {
-                value = PayForTwoDiscounted(value, order);
+                if (d.GetType().Equals(typeof(PayForTwoDiscount)))
+                {
+                    value -= d.CalculateDiscount(orderList, products);
+                    affectedProducts += d.AffectedProducts();
+                }
+                
             }
-            else if (discounts.Count != 0)
-            {
-                List<char> orderList = new List<char>(order);
 
+            if (discounts.Count != 0)
+            {
                 foreach(var d in discounts)
                 {
-                    value -= d.CalculateDiscount(orderList);
+                    if (!affectedProducts.Any( x => d.AffectedProducts().Contains(x)))
+                    {
+                        value -= d.CalculateDiscount(orderList, products);
+                    }            
                 }
+
             }
 
             return value;
         }
 
+
         public void RegisterDiscount(IDiscount discount)
         {
             discounts.Add(discount);
-        }
-
-        public void AddPayForTwo(char item)
-        {
-            payForTwo.Add(item);
-        }
-
-        public void AddAllItemsToPayForTwo()
-        {
-            for (int i = 0; i < 26; i++)
-            {
-                payForTwo.Add((char)('A' + i));
-            }
-        }
-
-        public void RemoveFromPayForTwo(char item)
-        {
-            payForTwo.Remove(item);
         }
     }
 }
