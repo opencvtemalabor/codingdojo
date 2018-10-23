@@ -64,5 +64,10 @@ namespace AruhazFeladat
             Assert.AreEqual(8, s.Eval("BBBAC"));
             Assert.AreEqual(9, s.Eval("CCCAB"));
         }
+
+        [TestMethod]
+        public void LoyaltyPoints() {
+            Assert.AreEqual(9, s.GetLoyaltyPoints("HELOSZIA"));
+        }
     }
 }

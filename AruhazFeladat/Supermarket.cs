@@ -80,5 +80,11 @@ namespace AruhazFeladat
         {
             discounts.Add(discount);
         }
+
+        public int GetLoyaltyPoints(string order)
+        {
+
+            return -1;
+        }
     }
 }
