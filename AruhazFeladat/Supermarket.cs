@@ -83,7 +83,7 @@ namespace AruhazFeladat
 
         public int GetLoyaltyPoints(string order)
         {
-            return (int) (Eval(order) / 10); // castolás pls
+            return (int) (InitialPrize(order) / 10); // castolás pls
         }
     }
 }
