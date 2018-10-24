@@ -69,5 +69,15 @@ namespace AruhazFeladat
         public void LoyaltyPoints() {
             Assert.AreEqual(9, s.GetLoyaltyPoints("HELOSZIA"));
         }
+
+        [TestMethod]
+        public void LoyaltyPointsWhenPayForTwoDiscount()
+        {
+            PayForTwoDiscount payForTwoDiscount = new PayForTwoDiscount();
+            s.RegisterDiscount(payForTwoDiscount);
+            payForTwoDiscount.AddAllItemsToPayForTwo();
+            Assert.AreEqual(7, s.GetLoyaltyPoints("ZZZ"));
+        }
     }
+
 }
