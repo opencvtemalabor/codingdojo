@@ -30,9 +30,7 @@ namespace AruhazFeladat
         [TestMethod]
         public void PayForTwoGetThree()
         {
-            PayForTwoDiscount payForTwoDiscount = new PayForTwoDiscount();
-            s.RegisterDiscount(payForTwoDiscount);
-            payForTwoDiscount.AddAllItemsToPayForTwo();    
+            s.AddAllItemsToPayForTwo();    
             Assert.AreEqual( 86, s.Eval("HELLOBELLOO"));
             Trace.WriteLine("{0}", s.Eval("HELLOBELLOO").ToString());
         }
@@ -40,10 +38,8 @@ namespace AruhazFeladat
         [TestMethod]
         public void PayForTwoGetThreeOnSpecificItems()
         {
-            PayForTwoDiscount payForTwoDiscount = new PayForTwoDiscount();
-            s.RegisterDiscount(payForTwoDiscount);
-            payForTwoDiscount.AddAllItemsToPayForTwo();
-            payForTwoDiscount.RemoveFromPayForTwo('A');
+            s.AddAllItemsToPayForTwo();
+            s.RemoveFromPayForTwo('A');
             Assert.AreNotEqual(2, s.Eval("AAA"));
         }
 
@@ -57,9 +53,7 @@ namespace AruhazFeladat
         [TestMethod]
         public void PreferPayForTwoGetThree()
         {
-            PayForTwoDiscount payForTwoDiscount = new PayForTwoDiscount();
-            s.RegisterDiscount(payForTwoDiscount);
-            payForTwoDiscount.AddAllItemsToPayForTwo();
+            s.AddAllItemsToPayForTwo();
             s.RegisterDiscount(new BundleDiscount("ABC", 1));
             Assert.AreEqual(8, s.Eval("BBBAC"));
             Assert.AreEqual(9, s.Eval("CCCAB"));
@@ -75,7 +69,7 @@ namespace AruhazFeladat
         {
             PayForTwoDiscount payForTwoDiscount = new PayForTwoDiscount();
             s.RegisterDiscount(payForTwoDiscount);
-            payForTwoDiscount.AddAllItemsToPayForTwo();
+            s.AddAllItemsToPayForTwo();
             Assert.AreEqual(7, s.GetLoyaltyPoints("ZZZ"));
         }
     }

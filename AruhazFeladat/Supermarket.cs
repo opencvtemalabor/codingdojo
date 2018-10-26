@@ -81,9 +81,39 @@ namespace AruhazFeladat
             discounts.Add(discount);
         }
 
+        //Returns the discount from the registered discounts that matches the requirements 
+        public IDiscount FindBundle(BundleDiscount bundleDiscount)
+        {
+            foreach (var d in discounts)
+            {
+                if (bundleDiscount.Bundle.Equals(((BundleDiscount) d).Bundle)
+                    && bundleDiscount.Discount.Equals(((BundleDiscount) d).Discount))
+                    return d;
+            }
+
+            return null;
+        }
+        
         public int GetLoyaltyPoints(string order)
         {
             return (int) (InitialPrize(order) / 10); // castolás pls
+        }
+
+        //Adds a "Pay for two get three" discount for each item
+        public void AddAllItemsToPayForTwo()
+        {
+            for (int i = 0; i < 26; i++)
+            {
+                PayForTwoDiscount tempDiscount = new PayForTwoDiscount((char) ('A' + i), products);
+                if(FindBundle(tempDiscount) == null)
+                    discounts.Add(tempDiscount);
+            }
+        }
+
+        //Removes a "Pay for two get three" discount
+        public void RemoveFromPayForTwo(char c)
+        {
+            discounts.Remove(FindBundle(new PayForTwoDiscount(c, products)));
         }
     }
 }

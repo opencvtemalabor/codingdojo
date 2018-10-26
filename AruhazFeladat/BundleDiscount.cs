@@ -11,6 +11,24 @@ namespace AruhazFeladat
         private string bundle;
         private double discount;
 
+        public string Bundle
+        {
+            get => bundle;
+            set => bundle = value;
+        }
+
+        public double Discount
+        {
+            get => discount;
+            set => discount = value;
+        }
+
+        public BundleDiscount()
+        {
+            bundle = "";
+            discount = 0;
+        }
+        
         public BundleDiscount(string bundle, double discount)
         {
             this.bundle = bundle;
