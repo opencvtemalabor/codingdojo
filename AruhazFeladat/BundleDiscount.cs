@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace AruhazFeladat
 {
@@ -10,6 +6,7 @@ namespace AruhazFeladat
     {
         private string bundle;
         private double discount;
+        protected int priority=9;
 
         public string Bundle
         {
@@ -28,7 +25,7 @@ namespace AruhazFeladat
             bundle = "";
             discount = 0;
         }
-        
+
         public BundleDiscount(string bundle, double discount)
         {
             this.bundle = bundle;
@@ -44,7 +41,7 @@ namespace AruhazFeladat
         {
             double sumDiscount = 0;
 
-            while(ContainsBundle(order, bundle))
+            while (ContainsBundle(order, bundle))
             {
                 sumDiscount += discount;
                 foreach (char c in bundle)
@@ -52,7 +49,7 @@ namespace AruhazFeladat
                     order.Remove(c);
                 }
             }
-           
+
             return sumDiscount;
         }
 
@@ -60,7 +57,7 @@ namespace AruhazFeladat
         {
             //copy
             List<char> orderCopy = new List<char>(order);
-           
+
             foreach (char c in bundle)
             {
                 if (orderCopy.Contains(c))
@@ -74,6 +71,11 @@ namespace AruhazFeladat
             }
 
             return true;
+        }
+
+        virtual public int Priority()
+        {
+            return priority;
         }
     }
 }

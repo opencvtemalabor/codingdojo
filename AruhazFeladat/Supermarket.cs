@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace AruhazFeladat
 {
     internal class Supermarket
     {
-        // Kristóf: a payForTwo és bundle feature lehet, hogy jobb lenne, ha külön
-        //  osztályba kerülne. Akkor gyakorlatilag mindenféle kedvezményeket egy közös
-        //  interfészen keresztül be lehetne regisztrálni és használni. Pl.
-        //  Supermarket.RegisterDiscount(new BundleDiscount("DEF",3));
         private Dictionary<char, int> products;
-        //Stores product bundles and respective discount amounts
         private List<IDiscount> discounts;
 
         public Supermarket()
@@ -43,33 +36,14 @@ namespace AruhazFeladat
         }
 
 
-        //Every product is worth it's position in the alphabet, eg. "A"=1, "Z"=26, "AB"=3...
         internal double Eval(string order)
         {
             double value = InitialPrize(order);
             List<char> orderList = new List<char>(order);
-            string affectedProducts = "";
-            
-            foreach(var d in discounts)
-            {
-                if (d.GetType().Equals(typeof(PayForTwoDiscount)))
-                {
-                    value -= d.CalculateDiscount(orderList, products);
-                    affectedProducts += d.AffectedProducts();
-                }
-                
-            }
 
-            if (discounts.Count != 0)
+            foreach (var d in discounts)
             {
-                foreach(var d in discounts)
-                {
-                    if (!affectedProducts.Any( x => d.AffectedProducts().Contains(x)))
-                    {
-                        value -= d.CalculateDiscount(orderList, products);
-                    }            
-                }
-
+                value -= d.CalculateDiscount(orderList, products);
             }
 
             return value;
@@ -79,6 +53,7 @@ namespace AruhazFeladat
         public void RegisterDiscount(IDiscount discount)
         {
             discounts.Add(discount);
+            discounts.Sort((a, b) => -a.Priority().CompareTo(b.Priority()));
         }
 
         //Returns the discount from the registered discounts that matches the requirements 
@@ -86,17 +61,17 @@ namespace AruhazFeladat
         {
             foreach (var d in discounts)
             {
-                if (bundleDiscount.Bundle.Equals(((BundleDiscount) d).Bundle)
-                    && bundleDiscount.Discount.Equals(((BundleDiscount) d).Discount))
+                if (bundleDiscount.Bundle.Equals(((BundleDiscount)d).Bundle)
+                    && bundleDiscount.Discount.Equals(((BundleDiscount)d).Discount))
                     return d;
             }
 
             return null;
         }
-        
+
         public int GetLoyaltyPoints(string order)
         {
-            return (int) (InitialPrize(order) / 10); // castolás pls
+            return (int)(InitialPrize(order) / 10); // castolás pls
         }
 
         //Adds a "Pay for two get three" discount for each item
@@ -104,8 +79,8 @@ namespace AruhazFeladat
         {
             for (int i = 0; i < 26; i++)
             {
-                PayForTwoDiscount tempDiscount = new PayForTwoDiscount((char) ('A' + i), products);
-                if(FindBundle(tempDiscount) == null)
+                PayForTwoDiscount tempDiscount = new PayForTwoDiscount((char)('A' + i), products);
+                if (FindBundle(tempDiscount) == null)
                     discounts.Add(tempDiscount);
             }
         }

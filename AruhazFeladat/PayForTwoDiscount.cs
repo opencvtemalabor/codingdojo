@@ -13,6 +13,7 @@ namespace AruhazFeladat
         {
             Bundle = "";
             Discount = 0;
+            priority = 10;
         }
         
         public PayForTwoDiscount(char c, Dictionary<char,int> products)
@@ -20,6 +21,8 @@ namespace AruhazFeladat
             Bundle = new string(c,3);
             products.TryGetValue(c, out int value);
             Discount = value;
+            priority = 10;
         }
+
     }
 }
