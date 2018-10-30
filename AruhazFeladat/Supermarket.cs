@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace AruhazFeladat
 {
@@ -83,6 +84,11 @@ namespace AruhazFeladat
                 if (FindBundle(tempDiscount) == null)
                     discounts.Add(tempDiscount);
             }
+        }
+
+        internal int FinalPrice(string v)
+        {
+            return 0;
         }
 
         //Removes a "Pay for two get three" discount

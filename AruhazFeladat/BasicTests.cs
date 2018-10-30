@@ -72,6 +72,14 @@ namespace AruhazFeladat
             s.AddAllItemsToPayForTwo();
             Assert.AreEqual(7, s.GetLoyaltyPoints("ZZZ"));
         }
+
+        [TestMethod]
+        public void ForEveryTenLoyaltyPointsGetValueMinusOne()
+        {
+            s.AddAllItemsToPayForTwo();
+            Assert.AreEqual(8, s.Eval("BBBAC"));
+            Assert.AreEqual(7, s.FinalPrice("BBBAC"));
+        }
     }
 
 }
