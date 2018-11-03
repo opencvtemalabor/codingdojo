@@ -45,8 +45,7 @@ namespace AruhazFeladat
             foreach (var d in discounts)
             {
                 value -= d.CalculateDiscount(orderList, products);
-            }
-
+            }            
             return value;
         }
 
@@ -88,7 +87,10 @@ namespace AruhazFeladat
 
         internal int FinalPrice(string v)
         {
-            return 0;
+            int value = (int) Eval(v);
+            int loyaltyPoints = GetLoyaltyPoints(v);
+            value -= loyaltyPoints / 10;
+            return value;
         }
 
         //Removes a "Pay for two get three" discount
