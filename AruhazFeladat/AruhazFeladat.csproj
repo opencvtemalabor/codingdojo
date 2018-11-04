@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlmostExpiredDiscount.cs" />
     <Compile Include="BasicTests.cs" />
     <Compile Include="BundleDiscount.cs" />
     <Compile Include="IDiscount.cs" />

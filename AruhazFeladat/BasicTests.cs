@@ -85,7 +85,7 @@ namespace AruhazFeladat
         public void AlmostExpired()
         {
             s.RegisterDiscount(new AlmostExpiredDiscount("HE"));
-            Assert.AreEqual(46, "HELLO");
+            Assert.AreEqual(46, s.Eval("HELLO"));
         }
     }
 
