@@ -80,6 +80,13 @@ namespace AruhazFeladat
             Assert.AreEqual(78, s.Eval("ZZZZ"));
             Assert.AreEqual(77, s.FinalPrice("ZZZZ"));
         }
+
+        [TestMethod]
+        public void AlmostExpired()
+        {
+            s.RegisterDiscount(new AlmostExpiredDiscount("HE"));
+            Assert.AreEqual(46, "HELLO");
+        }
     }
 
 }
