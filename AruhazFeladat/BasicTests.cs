@@ -60,7 +60,8 @@ namespace AruhazFeladat
         }
 
         [TestMethod]
-        public void LoyaltyPoints() {
+        public void LoyaltyPoints()
+        {
             Assert.AreEqual(9, s.GetLoyaltyPoints("HELOSZIA"));
         }
 
@@ -87,6 +88,8 @@ namespace AruhazFeladat
             s.RegisterDiscount(new AlmostExpiredDiscount("HE"));
             Assert.AreEqual(46, s.Eval("HELLO"));
         }
+
+
     }
 
 }

@@ -32,6 +32,8 @@ namespace AruhazFeladat
             this.discount = discount;
         }
 
+        // Kristof: expression body notation?
+        //          public string AffectedProducts() => bundle;
         public string AffectedProducts()
         {
             return bundle;
@@ -55,6 +57,8 @@ namespace AruhazFeladat
 
         private bool ContainsBundle(List<char> order, string bundle)
         {
+            // Kristof: ez a "copy" kommentár szerintem felesleges...
+            //  Elég triviális, hogy az orderCopy egy másolat...
             //copy
             List<char> orderCopy = new List<char>(order);
 

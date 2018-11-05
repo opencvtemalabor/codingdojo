@@ -38,6 +38,8 @@ namespace AruhazFeladat
             return sumDiscount;
         }
 
+        // Kristof: az "expression body" forma ilyenkor jóval tömörebb:
+        //  public int Priority() => priority;
         public int Priority()
         {
             return priority;

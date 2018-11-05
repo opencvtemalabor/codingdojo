@@ -13,6 +13,10 @@ namespace AruhazFeladat
             products = new Dictionary<char, int>();
             discounts = new List<IDiscount>();
 
+            // Kristof: ez olyan, mint lentebb a AddAllItemsToPayForTwo,
+            //  a Supermarketnek miért van ilyen "default ár" funkciója?
+            //  Ha csak a teszeléshez kell, akkor ne itt legyen, hanem a tesztekben.
+            //  A Supermarket ne tudjon teszt esetek részleteiről.
             for (int i = 0; i < 26; i++)
             {
                 products.Add((char)('A' + i), i + 1);
@@ -35,6 +39,7 @@ namespace AruhazFeladat
 
             return sum;
         }
+        // Kristof: itt két üres sor volt egymás után... (nem ad profi megjelenést)
 
 
         internal double Eval(string order)
@@ -48,6 +53,7 @@ namespace AruhazFeladat
             }            
             return value;
         }
+        // Kristof: itt két üres sor volt egymás után... (nem ad profi megjelenést)
 
 
         public void RegisterDiscount(IDiscount discount)
@@ -59,6 +65,8 @@ namespace AruhazFeladat
         //Returns the discount from the registered discounts that matches the requirements 
         public IDiscount FindBundle(BundleDiscount bundleDiscount)
         {
+            // Kristof: ezt egy Linq-es kifejezéssel szebb lenne lekérni...
+            //  bundleDiscount.SingleOrDefault(d => ......... );
             foreach (var d in discounts)
             {
                 if (bundleDiscount.Bundle.Equals(((BundleDiscount)d).Bundle)
@@ -77,6 +85,9 @@ namespace AruhazFeladat
         //Adds a "Pay for two get three" discount for each item
         public void AddAllItemsToPayForTwo()
         {
+            // Kristof: ez kicsit bedrótozott funkció. Ha csak a tesztekhez kell, akkor
+            //  jobb, ha a tesztek végzik ezt el és a Supermarket nem tud ilyen
+            //  alapértelmezett árakról... Ez csak a tesztekre tartozik.
             for (int i = 0; i < 26; i++)
             {
                 PayForTwoDiscount tempDiscount = new PayForTwoDiscount((char)('A' + i), products);
