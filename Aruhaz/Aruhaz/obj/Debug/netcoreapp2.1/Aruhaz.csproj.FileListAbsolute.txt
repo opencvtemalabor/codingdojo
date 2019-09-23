@@ -1,0 +1,14 @@
+E:\Projektek\temalaborCodingDojo\codingdojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+E:\Projektek\temalaborCodingDojo\codingdojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+E:\Projektek\temalaborCodingDojo\codingdojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
+E:\Projektek\temalaborCodingDojo\codingdojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\Aruhaz.deps.json
+E:\Projektek\temalaborCodingDojo\codingdojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\Aruhaz.runtimeconfig.json
+E:\Projektek\temalaborCodingDojo\codingdojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\Aruhaz.runtimeconfig.dev.json
+E:\Projektek\temalaborCodingDojo\codingdojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\Aruhaz.dll
+E:\Projektek\temalaborCodingDojo\codingdojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\Aruhaz.pdb
+E:\Projektek\temalaborCodingDojo\codingdojo\Aruhaz\Aruhaz\obj\Debug\netcoreapp2.1\Aruhaz.csprojAssemblyReference.cache
+E:\Projektek\temalaborCodingDojo\codingdojo\Aruhaz\Aruhaz\obj\Debug\netcoreapp2.1\Aruhaz.csproj.CoreCompileInputs.cache
+E:\Projektek\temalaborCodingDojo\codingdojo\Aruhaz\Aruhaz\obj\Debug\netcoreapp2.1\Aruhaz.AssemblyInfoInputs.cache
+E:\Projektek\temalaborCodingDojo\codingdojo\Aruhaz\Aruhaz\obj\Debug\netcoreapp2.1\Aruhaz.AssemblyInfo.cs
+E:\Projektek\temalaborCodingDojo\codingdojo\Aruhaz\Aruhaz\obj\Debug\netcoreapp2.1\Aruhaz.dll
+E:\Projektek\temalaborCodingDojo\codingdojo\Aruhaz\Aruhaz\obj\Debug\netcoreapp2.1\Aruhaz.pdb
