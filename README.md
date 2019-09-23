@@ -5,7 +5,9 @@ Ennek a feladatnak a célja, hogy a Témalabor keretében egy kicsit gyakoroljuk
 
 A feladat kezdetben nagyon egyszerű, aztán ahogy haladunk előre és már nincs mit szépíteni a megoldáson, jönnek a vicces csavarok (mert a képzeletbeli megrendelőnek eszébe jutott valami). Így a mai agilis világ gondolkodásmódjához igazodva a szoftver design folyamatosan fejlődik, ahogy a követelmények is változnak.
 
-A szoftverünk lényege egy Supermarket osztály, melynek `int Eval(string bag)` függvénye megkapja a vásárlói kosár teljes tartalmát, melyben nagybetűk jelzik az egyes termékeket. Pl. `"AABCCCD"` összesen 7 termék, 4 fajtából. A visszatérési érték pedig az ár, pl. 42.
+A feladat leírása az EViP tantárgy oldalán található HF1a:
+https://bmeaut.github.io/evipdev/guides/HaziFeladat1a.html
+(Aztán jutunk, ameddig jutunk.)
 
 Ehhez nyilván először olyan tesztek kellenek, hogy üres kosár ára 0, aztán valahogy kell tudni regisztrálni termékeket, aztán majd kiderül...
 
