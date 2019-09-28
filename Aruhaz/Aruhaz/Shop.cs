@@ -6,9 +6,5 @@ namespace Aruhaz
 {
     class Shop
     {
-        public int Total()
-        {
-            return -1;
-        }
     }
 }

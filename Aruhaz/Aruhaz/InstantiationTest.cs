@@ -10,9 +10,7 @@ namespace Aruhaz
         {
             var shop = new Shop();
 
-            int expected = 0;
-
-            Assert.Equal(expected, shop.Total());
+            Assert.Equal(0, shop.Total());
         }
     }
 }
