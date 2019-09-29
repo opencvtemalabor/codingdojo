@@ -6,5 +6,12 @@ namespace Aruhaz
 {
     class Shop
     {
+        protected int price = 0;
+        
+        public int Total()
+        {
+            return price;
+        }
+        
     }
 }

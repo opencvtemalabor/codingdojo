@@ -12,5 +12,6 @@ namespace Aruhaz
 
             Assert.Equal(0, shop.Total());
         }
+       
     }
 }
