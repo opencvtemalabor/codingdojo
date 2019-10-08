@@ -40,3 +40,16 @@ C:\Users\user\Source\Repos\codingdojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\Aruh
 C:\Users\user\Source\Repos\codingdojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\Aruhaz.runtimeconfig.dev.json
 C:\Users\user\Source\Repos\codingdojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\Aruhaz.dll
 C:\Users\user\Source\Repos\codingdojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\Aruhaz.pdb
+C:\Users\orosz\OneDrive\Documents\CodingDojo\Aruhaz\Aruhaz\obj\Debug\netcoreapp2.1\Aruhaz.csprojAssemblyReference.cache
+C:\Users\orosz\OneDrive\Documents\CodingDojo\Aruhaz\Aruhaz\obj\Debug\netcoreapp2.1\Aruhaz.AssemblyInfoInputs.cache
+C:\Users\orosz\OneDrive\Documents\CodingDojo\Aruhaz\Aruhaz\obj\Debug\netcoreapp2.1\Aruhaz.AssemblyInfo.cs
+C:\Users\orosz\OneDrive\Documents\CodingDojo\Aruhaz\Aruhaz\obj\Debug\netcoreapp2.1\Aruhaz.dll
+C:\Users\orosz\OneDrive\Documents\CodingDojo\Aruhaz\Aruhaz\obj\Debug\netcoreapp2.1\Aruhaz.pdb
+C:\Users\orosz\OneDrive\Documents\CodingDojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\orosz\OneDrive\Documents\CodingDojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\orosz\OneDrive\Documents\CodingDojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
+C:\Users\orosz\OneDrive\Documents\CodingDojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\Aruhaz.deps.json
+C:\Users\orosz\OneDrive\Documents\CodingDojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\Aruhaz.runtimeconfig.json
+C:\Users\orosz\OneDrive\Documents\CodingDojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\Aruhaz.runtimeconfig.dev.json
+C:\Users\orosz\OneDrive\Documents\CodingDojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\Aruhaz.dll
+C:\Users\orosz\OneDrive\Documents\CodingDojo\Aruhaz\Aruhaz\bin\Debug\netcoreapp2.1\Aruhaz.pdb
