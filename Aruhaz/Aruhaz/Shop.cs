@@ -9,6 +9,7 @@ namespace Aruhaz
         protected int price = 0;
         private Dictionary<char, int> Prices = new Dictionary<char, int>();
         private Dictionary<char, string> Discounts = new Dictionary<char, string>();
+        private Dictionary<string, double> AmountDiscount = new Dictionary<string, double>();
         
         public int Total(string param = "")
         {
@@ -16,6 +17,8 @@ namespace Aruhaz
             {
                 return 0;
             }
+            List<char> discountedItems = new List<char>();
+            List<double> discPrice = new List<double>();
             foreach (var discount in Discounts)
             {
                 if (param.Contains(discount.Key))
@@ -37,13 +40,34 @@ namespace Aruhaz
                     }
                 }
             }
+            //Searching if there are possible Amount discounts in the input.
+            foreach(var item in AmountDiscount)
+            {
+                string[] parsedKey = item.Key.Split(" ");
+                if (param.Contains(parsedKey[0][0]) && CountProductOccurrence(parsedKey[0][0], param) >= Convert.ToInt32(parsedKey[1]))
+                {
+                    discountedItems.Add(parsedKey[0][0]);
+                    discPrice.Add(item.Value);
+                }
+            }
             foreach (char item in param)
             {
-                price += Prices[item];
+                if (discountedItems.Contains(item))
+                    price +=(int)( Prices[item] * discPrice[discountedItems.FindIndex(find=>find==item)]);
+                else
+                    price += Prices[item];
             }
             return price;
         }
-        
+
+        public void RegisterAmountDiscount(char product, int amount, double discount)
+        {
+            string key = "";
+            key += product;
+            key += " " + amount;
+            AmountDiscount.Add(key, discount);
+        }
+
         public void Register(char product, int productPrice)
         {
             Prices[product] = productPrice;

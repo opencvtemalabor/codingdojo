@@ -17,7 +17,7 @@ namespace Aruhaz
             var price = shop.Total("A");
             
             //assert
-            Assert.Equal(price, 10);
+            Assert.Equal( 10, price);
         }
 
         [Fact]
@@ -29,7 +29,7 @@ namespace Aruhaz
 
             var price = shop.Total("AAAA");
 
-            Assert.Equal(price, 30);
+            Assert.Equal( 30,price);
         }
 
         [Fact]
@@ -41,7 +41,7 @@ namespace Aruhaz
 
             var price = shop.Total("AAAAA");
 
-            Assert.Equal(price, 45);
+            Assert.Equal(45,price);
         }
     }
 }
