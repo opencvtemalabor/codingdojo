@@ -43,5 +43,19 @@ namespace Aruhaz
 
             Assert.Equal(45,price);
         }
+        
+        [Fact]
+        public void ComboDiscountWorks()
+        {
+            var shop = new Shop();
+            shop.Register('A', 10);
+            shop.Register('B', 20);
+            shop.Register('C', 50);
+            shop.RegisterComboDiscount("ABC", 60);
+
+            var price = shop.Total("CAAAABB");
+
+            Assert.Equal(110, price);
+        }
     }
 }
