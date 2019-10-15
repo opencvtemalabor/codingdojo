@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Aruhaz
@@ -62,10 +63,7 @@ namespace Aruhaz
 
         public void RegisterAmountDiscount(char product, int amount, double discount)
         {
-            string key = "";
-            key += product;
-            key += " " + amount;
-            AmountDiscount.Add(key, discount);
+            AmountDiscount.Add($"{product} {amount}", discount);
         }
 
         public void Register(char product, int productPrice)
@@ -75,19 +73,12 @@ namespace Aruhaz
 
         public void RegisterCountDiscount(char product, int paidFor, int obtainedAmount)
         {
-            string formatString = paidFor + " " + obtainedAmount;
-            Discounts[product] = formatString;
+            Discounts[product] = $"{paidFor} {obtainedAmount}";
         }
 
         public int CountProductOccurrence(char product, string param)
         {
-            int count = 0;
-            foreach (char c in param)
-            {
-                if (c == product)
-                    count++;
-            }
-            return count;
+            return param.ToCharArray().Where(c => c == product).Count();
         }
     }
 }
