@@ -11,6 +11,7 @@ namespace Aruhaz
         private Dictionary<char, int> Prices = new Dictionary<char, int>();
         private Dictionary<char, string> Discounts = new Dictionary<char, string>();
         private Dictionary<string, double> AmountDiscount = new Dictionary<string, double>();
+        private Dictionary<string, int> ComboDiscount = new Dictionary<string, int>();
         
         public int Total(string param = "")
         {
@@ -51,6 +52,12 @@ namespace Aruhaz
                     discPrice.Add(item.Value);
                 }
             }
+
+            foreach (var combo in ComboDiscount)
+            {
+               
+            }
+
             foreach (char item in param)
             {
                 if (discountedItems.Contains(item))
@@ -80,5 +87,41 @@ namespace Aruhaz
         {
             return param.ToCharArray().Where(c => c == product).Count();
         }
+
+        public void RegisterComboDiscount(string comboOfProducts, int priceOfCombo)
+        {
+            ComboDiscount.Add(comboOfProducts, priceOfCombo);
+        }
+
+        // gets the occurences of Combos in param
+        public int CountComboDiscountOccurrence(string comboOfProducts, string param)
+        {
+            Dictionary<char, int> lettersWithOccurrences = new Dictionary<char, int>();
+            int count = 0;
+            // searching with ComboLetters one by one in the specified string
+            foreach (char letter in comboOfProducts.ToCharArray())
+            {
+                foreach (char c in param.ToCharArray())
+                {
+                    if (letter == c)
+                        count++;
+                }
+                if (count == 0) //if any letter doesn't occur, useless to count the others
+                {
+                    return 0;
+                }
+                lettersWithOccurrences.Add(letter, count);
+                count = 0;
+            }
+
+            //searching minimal occurrence among letters
+            count = lettersWithOccurrences.First().Value;
+            foreach (var v in lettersWithOccurrences)
+            {
+                if (v.Value < count) count = v.Value;
+            }
+            return count;
+        }
+
     }
 }
