@@ -3,6 +3,6 @@
 /AruhazFeladat/obj/*
 /AruhazFeladat/packages/*
 .vs
-/Aruhaz/.vs/*
-/Aruhaz/Aruhaz/bin/*
-/Aruhaz/Aruhaz/obj/*
+Aruhaz/.vs/*
+Aruhaz/Aruhaz/bin/*
+Aruhaz/Aruhaz/obj/*
