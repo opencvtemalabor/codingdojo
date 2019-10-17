@@ -12,7 +12,7 @@ namespace Aruhaz
         private Dictionary<char, string> Discounts = new Dictionary<char, string>();
         private Dictionary<string, double> AmountDiscount = new Dictionary<string, double>();
         private Dictionary<string, int> ComboDiscount = new Dictionary<string, int>();
-        
+
         public int Total(string param = "")
         {
             if (param == "")
@@ -55,7 +55,10 @@ namespace Aruhaz
 
             foreach (var combo in ComboDiscount)
             {
-               
+                int numberOfOccurrences = CountComboDiscountOccurrence(combo.Key, param);
+                for (int i = 0; i < numberOfOccurrences; i++) {
+                    price += combo.Value;
+                }
             }
 
             foreach (char item in param)
@@ -66,6 +69,11 @@ namespace Aruhaz
                     price += Prices[item];
             }
             return price;
+        }
+
+        private int CountComboDiscountFromNormal(string key)
+        {
+            throw new NotImplementedException();
         }
 
         public void RegisterAmountDiscount(char product, int amount, double discount)

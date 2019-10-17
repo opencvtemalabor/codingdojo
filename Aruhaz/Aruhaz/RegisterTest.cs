@@ -51,7 +51,7 @@ namespace Aruhaz
             shop.Register('A', 10);
             shop.Register('B', 20);
             shop.Register('C', 50);
-            shop.RegisterComboDiscount("ABC", 60);
+            shop.RegisterComboDiscount("ABC", -20);
 
             var price = shop.Total("CAAAABB");
 
