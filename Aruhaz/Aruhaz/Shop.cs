@@ -21,6 +21,7 @@ namespace Aruhaz
             }
             List<char> discountedItems = new List<char>();
             List<double> discPrice = new List<double>();
+
             foreach (var discount in Discounts)
             {
                 if (param.Contains(discount.Key))
@@ -43,7 +44,32 @@ namespace Aruhaz
                 }
             }
             //Searching if there are possible Amount discounts in the input.
-            foreach(var item in AmountDiscount)
+            CheckAmountDiscounts(param, discountedItems, discPrice);
+            
+            //Checks the possible Combo discounts and subtracts them from the price
+            SubtractComboDiscounts(param);
+
+            //Adds the discounted items and normal items to the price
+            SummerisePrice(param, discountedItems, discPrice);
+
+            return price;
+        }
+
+        private void SubtractComboDiscounts(string param)
+        {
+            foreach (var combo in ComboDiscount)
+            {
+                int numberOfOccurrences = CountComboDiscountOccurrence(combo.Key, param);
+                for (int i = 0; i < numberOfOccurrences; i++)
+                {
+                    price += combo.Value;
+                }
+            }
+        }
+
+        private void CheckAmountDiscounts(string param, List<char> discountedItems, List<double> discPrice)
+        {
+            foreach (var item in AmountDiscount)
             {
                 string[] parsedKey = item.Key.Split(" ");
                 if (param.Contains(parsedKey[0][0]) && CountProductOccurrence(parsedKey[0][0], param) >= Convert.ToInt32(parsedKey[1]))
@@ -52,23 +78,17 @@ namespace Aruhaz
                     discPrice.Add(item.Value);
                 }
             }
+        }
 
-            foreach (var combo in ComboDiscount)
-            {
-                int numberOfOccurrences = CountComboDiscountOccurrence(combo.Key, param);
-                for (int i = 0; i < numberOfOccurrences; i++) {
-                    price += combo.Value;
-                }
-            }
-
+        private void SummerisePrice(string param, List<char> discountedItems, List<double> discPrice)
+        {
             foreach (char item in param)
             {
                 if (discountedItems.Contains(item))
-                    price +=(int)( Prices[item] * discPrice[discountedItems.FindIndex(find=>find==item)]);
+                    price += (int)(Prices[item] * discPrice[discountedItems.FindIndex(find => find == item)]);
                 else
                     price += Prices[item];
             }
-            return price;
         }
 
         private int CountComboDiscountFromNormal(string key)
@@ -101,7 +121,7 @@ namespace Aruhaz
             ComboDiscount.Add(comboOfProducts, priceOfCombo);
         }
 
-        // gets the occurences of Combos in param
+        // gets the occurrences of Combos in param
         public int CountComboDiscountOccurrence(string comboOfProducts, string param)
         {
             Dictionary<char, int> lettersWithOccurrences = new Dictionary<char, int>();
