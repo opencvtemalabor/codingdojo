@@ -22,6 +22,23 @@ namespace Aruhaz
             List<char> discountedItems = new List<char>();
             List<double> discPrice = new List<double>();
 
+            //Checks the regular discounts and adds them to the price
+            param = CalculateDiscount(param);
+
+            //Searching if there are possible Amount discounts in the input.
+            CheckAmountDiscounts(param, discountedItems, discPrice);
+
+            //Checks the possible Combo discounts and subtracts them from the price
+            SubtractComboDiscounts(param);
+
+            //Adds the discounted items and normal items to the price
+            SummerisePrice(param, discountedItems, discPrice);
+
+            return price;
+        }
+
+        private string CalculateDiscount(string param)
+        {
             foreach (var discount in Discounts)
             {
                 if (param.Contains(discount.Key))
@@ -44,16 +61,7 @@ namespace Aruhaz
                 }
             }
 
-            //Searching if there are possible Amount discounts in the input.
-            CheckAmountDiscounts(param, discountedItems, discPrice);
-            
-            //Checks the possible Combo discounts and subtracts them from the price
-            SubtractComboDiscounts(param);
-
-            //Adds the discounted items and normal items to the price
-            SummerisePrice(param, discountedItems, discPrice);
-
-            return price;
+            return param;
         }
 
         private void SubtractComboDiscounts(string param)
@@ -92,11 +100,6 @@ namespace Aruhaz
             }
         }
 
-        public void RegisterAmountDiscount(char product, int amount, double discount)
-        {
-            AmountDiscount.Add($"{product} {amount}", discount);
-        }
-
         public void Register(char product, int productPrice)
         {
             Prices[product] = productPrice;
@@ -105,6 +108,11 @@ namespace Aruhaz
         public void RegisterCountDiscount(char product, int paidFor, int obtainedAmount)
         {
             Discounts[product] = $"{paidFor} {obtainedAmount}";
+        }
+
+        public void RegisterAmountDiscount(char product, int amount, double discount)
+        {
+            AmountDiscount.Add($"{product} {amount}", discount);
         }
 
         public int CountProductOccurrence(char product, string param)

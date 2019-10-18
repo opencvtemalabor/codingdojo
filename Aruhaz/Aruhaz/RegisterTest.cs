@@ -28,8 +28,7 @@ namespace Aruhaz
             shop.RegisterCountDiscount('A', 3, 4);
 
             var price = shop.Total("AAAA");
-
-            Assert.Equal( 30,price);
+            Assert.Equal(30, price);
         }
 
         [Fact]
@@ -41,7 +40,7 @@ namespace Aruhaz
 
             var price = shop.Total("AAAAA");
 
-            Assert.Equal(45,price);
+            Assert.Equal(45, price);
         }
         
         [Fact]
@@ -70,6 +69,33 @@ namespace Aruhaz
         }
 
         [Fact]
+        public void MixCountAndComboDiscountsTogether()
+        {
+            var shop = new Shop();
+            shop.Register('A', 10);
+            shop.Register('B', 20);
+            shop.RegisterCountDiscount('A', 2, 3);
+            shop.RegisterComboDiscount("AAB", -5);
+
+            var price = shop.Total("AAAABBBB");
+            Assert.Equal(100, price);
+
+        }
+
+        [Fact]
+        public void MixCountAndAmountDiscountsTogether()
+        {
+            var shop = new Shop();
+            shop.Register('A', 10);
+            shop.Register('B', 20);
+            shop.RegisterCountDiscount('A', 2, 3);
+            shop.RegisterAmountDiscount('B', 3, 0.9);
+
+            var price = shop.Total("AAAABBBB");
+            Assert.Equal(102, price);
+        }
+        /*
+        [Fact]
         public void TestClubMemberDiscount()
         {
             var shop = new Shop();
@@ -82,6 +108,6 @@ namespace Aruhaz
             var price = shop.Total("ABBAt");
 
             Assert.Equal(72, price);
-        }
+        }*/
     }
 }
