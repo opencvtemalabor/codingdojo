@@ -68,5 +68,20 @@ namespace Aruhaz
             actual = shop.CountComboDiscountOccurrence("ABCD", "CAAAABB");
             Assert.Equal(0, actual);
         }
+
+        [Fact]
+        public void TestClubMemberDiscount()
+        {
+            var shop = new Shop();
+            shop.Register('A', 10);
+            shop.Register('B', 30);
+
+            //klubtag regisztrálása
+            shop.RegisterClubMember('t');
+
+            var price = shop.Total("ABBAt");
+
+            Assert.Equal(72, price);
+        }
     }
 }

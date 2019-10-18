@@ -43,6 +43,7 @@ namespace Aruhaz
                     }
                 }
             }
+
             //Searching if there are possible Amount discounts in the input.
             CheckAmountDiscounts(param, discountedItems, discPrice);
             
@@ -89,11 +90,6 @@ namespace Aruhaz
                 else
                     price += Prices[item];
             }
-        }
-
-        private int CountComboDiscountFromNormal(string key)
-        {
-            throw new NotImplementedException();
         }
 
         public void RegisterAmountDiscount(char product, int amount, double discount)
