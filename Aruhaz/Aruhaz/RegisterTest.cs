@@ -94,7 +94,7 @@ namespace Aruhaz
             var price = shop.Total("AAAABBBB");
             Assert.Equal(102, price);
         }
-        /*
+        
         [Fact]
         public void TestClubMemberDiscount()
         {
@@ -108,6 +108,6 @@ namespace Aruhaz
             var price = shop.Total("ABBAt");
 
             Assert.Equal(72, price);
-        }*/
+        }
     }
 }
