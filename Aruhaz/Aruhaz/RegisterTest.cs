@@ -1,7 +1,5 @@
 ﻿using System;
 using Xunit;
-
-
 namespace Aruhaz
 {
     public class RegisterTest
@@ -55,17 +53,6 @@ namespace Aruhaz
             var price = shop.Total("CAAAABB");
 
             Assert.Equal(110, price);
-        }
-
-        [Fact]
-        public void TestComboDiscountOccurrences()
-        {
-            var shop = new Shop();
-            int actual = shop.CountComboDiscountOccurrence("ABC", "CAAAABB");
-            Assert.Equal(1, actual);
-
-            actual = shop.CountComboDiscountOccurrence("ABCD", "CAAAABB");
-            Assert.Equal(0, actual);
         }
 
         [Fact]
