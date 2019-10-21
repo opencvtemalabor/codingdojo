@@ -27,7 +27,7 @@ namespace Aruhaz
                 cartItemsThatMatchAChar.TryAdd(charInCombo, cart.FindAll(shopItem => shopItem.Name == charInCombo).ToList());
             }
            
-            int ocurrenceOfSequenceInCart = 50000000;
+            int ocurrenceOfSequenceInCart = int.MaxValue;
             foreach (var oneCharMatch in cartItemsThatMatchAChar)
             {
                 int floor=(int)Math.Floor((double)oneCharMatch.Value.Count / numOfCharInComboOfProducts[oneCharMatch.Key]);

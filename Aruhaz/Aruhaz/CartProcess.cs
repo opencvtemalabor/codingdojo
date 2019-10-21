@@ -7,6 +7,5 @@ namespace Aruhaz
     abstract class CartProcess
     {
         abstract public void ApplyCart(Cart cart);
-       
     }
 }

@@ -32,7 +32,6 @@ namespace Aruhaz
                     foreach (var item in cart.FindAll(x => x.Name == productName).Take(numOfDiscountSequence).ToList())
                     {
                         item.CurrentPrice = 0;
-
                     }
                 }
 
