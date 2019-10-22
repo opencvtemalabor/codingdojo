@@ -43,9 +43,12 @@ namespace Aruhaz
             discounts.Add(new AmountDiscount(product,amount,discount));
         }
 
-        public void RegisterComboDiscount(string comboOfProducts, int priceOfCombo)
+        public void RegisterComboDiscount(string comboOfProducts, int priceOfCombo, bool isClubOnly = false)
         {
-            discounts.Add(new ComboDiscount(comboOfProducts, priceOfCombo));
+            //mivel a combodiscount igazából nem azt várja, hogy mennyi az ára az adott termékcsoportnak együtt, hanem, hogy mennyivel lesz olcsóbb, ezért ki kell számolni ezt, hogy kívülről a termékek közös árát lehessen megadni
+            int discount = priceOfCombo - Total(comboOfProducts);   //ez egy negatív számként mondja meg, hogy mennyivel lesz kevesebb a termékek ára, ha együtt vannak
+
+            discounts.Add(new ComboDiscount(comboOfProducts, discount, isClubOnly));
         }
     }
 }

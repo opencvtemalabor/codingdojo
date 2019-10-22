@@ -8,11 +8,13 @@ namespace Aruhaz
     {
         private List<char> comboOfProducts;
         private int priceOfCombo;
+        private bool onlyForClubMembers;
 
-        public ComboDiscount(string comboOfProducts, int priceOfCombo)
+        public ComboDiscount(string comboOfProducts, int priceOfCombo, bool onlyForClubMembers = false)
         {
             this.comboOfProducts = comboOfProducts.ToList();
             this.priceOfCombo = priceOfCombo;
+            this.onlyForClubMembers = onlyForClubMembers;
         }
 
         public override void ApplyCart(Cart cart)
