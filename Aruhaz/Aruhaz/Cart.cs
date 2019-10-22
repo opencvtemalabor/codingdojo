@@ -18,6 +18,7 @@ namespace Aruhaz
 
         public void SetCartString(string cartString = "")
         {
+            IsClubMember = false;
             this.Clear();
             foreach (var character in cartString)
             {

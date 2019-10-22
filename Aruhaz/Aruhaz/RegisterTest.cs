@@ -110,10 +110,36 @@ namespace Aruhaz
             shop.RegisterClubMember('t');
 
             var priceForClub = shop.Total("ABBBCt");
-            Assert.Equal(72, priceForClub);         // ABC=60 + B=20 * 0.9, mert clubmember
+            Assert.Equal(72, priceForClub);         // ABBC=60 + B=20 * 0.9, mert clubmember
+
+            priceForClub = shop.Total("ABBCCACBBt");    //ABBC=60 * 2 + C=30 * 0.9, mert clubmember
+            Assert.Equal(135, priceForClub);
 
             var priceNotForClub = shop.Total("ABBBC");
             Assert.Equal(100, priceNotForClub);     // 10 + 3*20 + 30
+
+            shop.RegisterComboDiscount("ABBC", 60);
+
+            priceNotForClub = shop.Total("ABBBC");  //ABBC=60 + B=20
+            Assert.Equal(80, priceNotForClub);
+        }
+
+        [Fact]
+        public void TestConcurrentDiscounts()
+        {
+            Shop shop = new Shop();
+            shop.Register('A', 10);
+            shop.Register('B', 20);
+            shop.Register('C', 30);
+
+            shop.RegisterComboDiscount("ABC", 40, true);
+            shop.RegisterComboDiscount("ABC", 40);
+
+            var priceForAnyone = shop.Total("ABCABCCC");
+            Assert.Equal(140, priceForAnyone);
+
+            priceForAnyone = shop.Total("ABCABCCCt");
+            Assert.Equal(126, priceForAnyone);
         }
     }
 }
