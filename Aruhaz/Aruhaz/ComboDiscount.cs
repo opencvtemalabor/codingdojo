@@ -35,7 +35,13 @@ namespace Aruhaz
                 int floor=(int)Math.Floor((double)oneCharMatch.Value.Count / numOfCharInComboOfProducts[oneCharMatch.Key]);
                 if (floor < ocurrenceOfSequenceInCart) ocurrenceOfSequenceInCart = floor;
             }
-            double discountToAdd = onlyForClubMembers && cart.IsClubMember || !onlyForClubMembers ? (double)priceOfCombo / cart.Count*ocurrenceOfSequenceInCart : 0;
+            
+            double discountToAdd = 0;
+            if((onlyForClubMembers && cart.IsClubMember) || (!onlyForClubMembers && !cart.IsClubMember))
+            {
+                discountToAdd = (double)priceOfCombo / cart.Count * ocurrenceOfSequenceInCart;
+            }
+
             cart.ForEach(x => x.CurrentPrice += discountToAdd);
         }
     }

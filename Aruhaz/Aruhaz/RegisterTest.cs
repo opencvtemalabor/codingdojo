@@ -141,5 +141,35 @@ namespace Aruhaz
             priceForAnyone = shop.Total("ABCABCCCt");
             Assert.Equal(126, priceForAnyone);
         }
+
+        [Fact]
+        public void TestConcurrentDiscounts2()
+        {
+            Shop shop = new Shop();
+            shop.Register('A', 10);
+            shop.Register('B', 20);
+            shop.Register('C', 30);
+
+            shop.RegisterComboDiscount("ABBC", 50, true);   
+            shop.RegisterComboDiscount("ABBC", 50);
+
+            var priceForAnyone = shop.Total("ABBCCC");      //50+2*60
+            Assert.Equal(110, priceForAnyone);
+
+            priceForAnyone = shop.Total("ABBC");            //50
+            Assert.Equal(50, priceForAnyone);
+
+            priceForAnyone = shop.Total("ABBCt");           //50*0,9
+            Assert.Equal(45, priceForAnyone);
+            
+            shop.RegisterComboDiscount("AB", 20);
+            shop.RegisterComboDiscount("AB", 20, true);
+
+            priceForAnyone = shop.Total("ABABAB");          //3*20
+            Assert.Equal(60, priceForAnyone);
+
+            priceForAnyone = shop.Total("ABABABt");         //3*20*0,9
+            Assert.Equal(54, priceForAnyone);
+        }
     }
 }
