@@ -45,9 +45,17 @@ namespace Aruhaz
 
         public void RegisterComboDiscount(string comboOfProducts, int priceOfCombo, bool isClubOnly = false)
         {
-            //mivel a combodiscount igazából nem azt várja, hogy mennyi az ára az adott termékcsoportnak együtt, hanem, hogy mennyivel lesz olcsóbb, ezért ki kell számolni ezt, hogy kívülről a termékek közös árát lehessen megadni
-            int discount = priceOfCombo - Total(comboOfProducts);   //ez egy negatív számként mondja meg, hogy mennyivel lesz kevesebb a termékek ára, ha együtt vannak
-
+            int discount = 0;//mivel a combodiscount igazából nem azt várja, hogy mennyi az ára az adott termékcsoportnak együtt, hanem, hogy mennyivel lesz olcsóbb, ezért ki kell számolni ezt, hogy kívülről a termékek közös árát lehessen megadni
+            //Kikeressük hogy volt-e már ilyen combodiscountunk, mert ha volt akkor a total függvényben az is levonódik az árból,ami miatt a discount értékünk "elromlik" viszont felhasználhatjuk hogy már kiszámoltuk a levonást.
+            for (int i = 0; i < discounts.Count; i++)
+            {
+                if (discounts[i].isSame(new ComboDiscount(comboOfProducts, 0, isClubOnly)))
+                    discount = ((ComboDiscount)discounts[i]).PriceOfCombo;
+            }
+            if (discount == 0)
+            {
+                discount = priceOfCombo - Total(comboOfProducts);//ez egy negatív számként mondja meg, hogy mennyivel lesz kevesebb a termékek ára, ha együtt vannak 
+            }
             discounts.Add(new ComboDiscount(comboOfProducts, discount, isClubOnly));
         }
     }

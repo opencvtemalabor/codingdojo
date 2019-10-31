@@ -4,19 +4,24 @@ using System.Linq;
 
 namespace Aruhaz
 {
-    internal class ComboDiscount:CartProcess
+    internal class ComboDiscount : CartProcess
     {
         private List<char> comboOfProducts;
         private int priceOfCombo;
         private bool onlyForClubMembers;
-
+        public int PriceOfCombo{
+            get { return priceOfCombo; }        
+        }
         public ComboDiscount(string comboOfProducts, int priceOfCombo, bool onlyForClubMembers = false)
         {
             this.comboOfProducts = comboOfProducts.ToList();
             this.priceOfCombo = priceOfCombo;
             this.onlyForClubMembers = onlyForClubMembers;
         }
-
+        public override bool isSame(ComboDiscount cd)
+        {
+            return this.comboOfProducts.SequenceEqual(cd.comboOfProducts);
+        }
         public override void ApplyCart(Cart cart)
         {
             
