@@ -171,5 +171,23 @@ namespace Aruhaz
             priceForAnyone = shop.Total("ABABABt");         //3*20*0,9
             Assert.Equal(54, priceForAnyone);
         }
+
+        [Fact]
+        public void TestSuperShopUser()
+        {
+            Shop shop = new Shop();
+            shop.Register('A', 10);
+            shop.Register('B', 20);
+            shop.Register('C', 30);
+
+            shop.RegisterSuperShopUser(3);
+
+            shop.Total("ABCABC3"); 
+            Assert.Equal(1, shop.GetUserSuperShop(3)); //round(120*0.01) = 1 
+
+            shop.Total("ABCABCCCB3");
+            Assert.Equal(3, shop.GetUserSuperShop(3)); //round(200*0.01) = 2 
+        }
+
     }
 }

@@ -43,6 +43,17 @@ namespace Aruhaz
             discounts.Add(new AmountDiscount(product,amount,discount));
         }
 
+        public void RegisterSuperShopUser(int ID)
+        {
+            //TODO
+        }
+
+        public int GetUserSuperShop(int ID)
+        {
+            //TODO
+            return 0;
+        }
+
         public void RegisterComboDiscount(string comboOfProducts, int priceOfCombo, bool isClubOnly = false)
         {
             int discount = 0;//mivel a combodiscount igazából nem azt várja, hogy mennyi az ára az adott termékcsoportnak együtt, hanem, hogy mennyivel lesz olcsóbb, ezért ki kell számolni ezt, hogy kívülről a termékek közös árát lehessen megadni
