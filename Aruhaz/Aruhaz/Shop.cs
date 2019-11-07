@@ -45,7 +45,9 @@ namespace Aruhaz
 
         public void RegisterSuperShopUser(int ID)
         {
-            //TODO
+            SuperShopDiscount superShop = new SuperShopDiscount();
+            superShop.addSuperShopUser(ID);
+            discounts.Add(superShop);
         }
 
         public int GetUserSuperShop(int ID)

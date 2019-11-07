@@ -16,7 +16,8 @@
         public override void ApplyCart(Cart cart)
         {
             var discountAppliesItems = cart.FindAll(x => x.Name.Equals(product));
-            if (discountAppliesItems.Count >= amount) discountAppliesItems.ForEach(item => item.CurrentPrice *= discount);
+            if (discountAppliesItems.Count >= amount)
+                discountAppliesItems.ForEach(item => item.CurrentPrice *= discount);
         }
        
     }

@@ -27,6 +27,11 @@ namespace Aruhaz
 
                 else if (Char.IsLower(character) && character == 't')
                     IsClubMember = true;
+                else if (Char.IsDigit(character))
+                {
+                    //TODO
+                }
+                    
             }
         }
 
