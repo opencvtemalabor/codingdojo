@@ -1,20 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Aruhaz
 {
-    internal class SuperShopDiscount : CartProcess
+    internal class SuperShopDiscount
     {
         private Dictionary<int, double> userIDWithSuperShopPoints = new Dictionary<int, double>();
 
-        public void addSuperShopUser(int ID)
+        public void AddSuperShopUser(int ID)
         {
             userIDWithSuperShopPoints.Add(ID, 0);
         }
 
-        public override void ApplyCart(Cart cart)
+        public double GetUserSuperShopAmoun(int ID)
         {
-            //TODO
-            throw new System.NotImplementedException();
+            return userIDWithSuperShopPoints[ID];
+        }
+
+        public void AddSuperShopPoints(Cart cart, int ID)
+        {
+            userIDWithSuperShopPoints[ID] += Math.Round(cart.GetTotal()*0.01);
         }
     }
 }

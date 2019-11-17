@@ -182,10 +182,10 @@ namespace Aruhaz
 
             shop.RegisterSuperShopUser(3);
 
-            shop.Total("ABCABC3"); 
+            shop.Total("ABCABC",3); 
             Assert.Equal(1, shop.GetUserSuperShop(3)); //round(120*0.01) = 1 
 
-            shop.Total("ABCABCCCB3");
+            shop.Total("ABCABCCCB",3);
             Assert.Equal(3, shop.GetUserSuperShop(3)); //round(200*0.01) = 2 
         }
 

@@ -11,13 +11,15 @@ namespace Aruhaz
         private List<CartProcess> discounts = new List<CartProcess>();
         private BasePrice basePrice = new BasePrice();
         private Cart cart = new Cart();
+        SuperShopDiscount superShop = new SuperShopDiscount();
 
-        public int Total(string cartString = "")
+        public int Total(string cartString = "", int SuperShopUser = -1)
         {
-
             cart.SetCartString(cartString);
             basePrice.ApplyCart(cart);
             discounts.ForEach(i => i.ApplyCart(cart));
+            if (SuperShopUser!=-1)
+                superShop.AddSuperShopPoints(cart, SuperShopUser);
             return cart.GetTotal();
 
         }
@@ -45,15 +47,12 @@ namespace Aruhaz
 
         public void RegisterSuperShopUser(int ID)
         {
-            SuperShopDiscount superShop = new SuperShopDiscount();
-            superShop.addSuperShopUser(ID);
-            discounts.Add(superShop);
+            superShop.AddSuperShopUser(ID);
         }
 
-        public int GetUserSuperShop(int ID)
+        public double GetUserSuperShop(int ID)
         {
-            //TODO
-            return 0;
+            return superShop.GetUserSuperShopAmoun(ID);
         }
 
         public void RegisterComboDiscount(string comboOfProducts, int priceOfCombo, bool isClubOnly = false)
