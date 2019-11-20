@@ -189,5 +189,25 @@ namespace Aruhaz
             Assert.Equal(3, shop.GetUserSuperShop(3)); //round(200*0.01) = 2 
         }
 
+        [Fact]
+        public void TestPayingWithSuperShopPoints()
+        {
+            Shop shop = new Shop();
+            shop.Register('A', 10);
+            shop.Register('B', 20);
+            shop.Register('C', 30);
+
+            shop.RegisterSuperShopUser(3);
+            shop.RegisterSuperShopUser(2);
+
+            shop.Total("CCCCCCCCCC", 3);    //round(300*0.01) = 3
+
+            var price = shop.Total("ABCABCp",3); // pontok = 3
+            Assert.Equal(117, price);   //round(120-3) = 117
+
+            Assert.Equal(1, shop.GetUserSuperShop(3));  //round(117*0.01) = 1
+
+        }
+
     }
 }
