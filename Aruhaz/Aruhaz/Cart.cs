@@ -9,6 +9,9 @@ namespace Aruhaz
     {
         private const double ClubMemberDiscountPercent = 10.0;
         public bool IsClubMember { get; set; }
+        public bool payWithSuperShopPoints { get; set; }
+        public double globalSubtractDiscount { get; set; }
+        
 
         public Cart(string cartString = "")
         {
@@ -26,10 +29,14 @@ namespace Aruhaz
                     this.Add(new CartItem(character, 0));
 
                 else if (Char.IsLower(character) && character == 't')
-                    IsClubMember = true;
+                                        IsClubMember = true;
                 else if (Char.IsDigit(character))
                 {
                     //TODO
+                }
+                else if(Char.IsLower(character) && character == 'p')
+                {
+                    payWithSuperShopPoints = true;
                 }
                     
             }
@@ -44,6 +51,7 @@ namespace Aruhaz
             }
 
             price = IsClubMember ? price * ((100 - ClubMemberDiscountPercent) / 100.0) : price;
+            price -= globalSubtractDiscount;
             return (int)Math.Round(price);
         }
     }

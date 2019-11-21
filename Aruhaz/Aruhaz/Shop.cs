@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Aruhaz
 {
     class Shop
     {
-       
+
         private List<CartProcess> discounts = new List<CartProcess>();
         private BasePrice basePrice = new BasePrice();
         private Cart cart = new Cart();
@@ -18,8 +15,10 @@ namespace Aruhaz
             cart.SetCartString(cartString);
             basePrice.ApplyCart(cart);
             discounts.ForEach(i => i.ApplyCart(cart));
-            if (SuperShopUser!=-1)
-                superShop.AddSuperShopPoints(cart, SuperShopUser);
+            if (SuperShopUser != -1)
+                
+
+            superShop.ApplyCart(cart, SuperShopUser);
             return cart.GetTotal();
 
         }
@@ -37,12 +36,12 @@ namespace Aruhaz
         public void Register(char product, int productPrice)
         {
             basePrice[product] = productPrice;
-        }    
+        }
 
         public void RegisterAmountDiscount(char product, int amount, double discount)
         {
-           
-            discounts.Add(new AmountDiscount(product,amount,discount));
+
+            discounts.Add(new AmountDiscount(product, amount, discount));
         }
 
         public void RegisterSuperShopUser(int ID)

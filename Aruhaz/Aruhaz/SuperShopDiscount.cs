@@ -17,9 +17,18 @@ namespace Aruhaz
             return userIDWithSuperShopPoints[ID];
         }
 
-        public void AddSuperShopPoints(Cart cart, int ID)
+        public void ApplyCart(Cart cart, int superShopUser)
         {
-            userIDWithSuperShopPoints[ID] += Math.Round(cart.GetTotal()*0.01);
+            if (cart.payWithSuperShopPoints)
+            {
+                double superShopPoints = 0;
+                userIDWithSuperShopPoints.TryGetValue(superShopUser, out superShopPoints);
+                userIDWithSuperShopPoints[superShopUser] = 0;
+
+                cart.globalSubtractDiscount += superShopPoints;
+            }
+
+            userIDWithSuperShopPoints[superShopUser] += Math.Round(cart.GetTotal() * 0.01);
         }
     }
 }
