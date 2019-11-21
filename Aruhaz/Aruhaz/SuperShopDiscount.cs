@@ -12,7 +12,7 @@ namespace Aruhaz
             userIDWithSuperShopPoints.Add(ID, 0);
         }
 
-        public double GetUserSuperShopAmoun(int ID)
+        public double GetUserSuperShopAmount(int ID)
         {
             return userIDWithSuperShopPoints[ID];
         }

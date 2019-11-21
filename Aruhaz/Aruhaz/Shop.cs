@@ -16,9 +16,8 @@ namespace Aruhaz
             basePrice.ApplyCart(cart);
             discounts.ForEach(i => i.ApplyCart(cart));
             if (SuperShopUser != -1)
-                
+                superShop.ApplyCart(cart, SuperShopUser);
 
-            superShop.ApplyCart(cart, SuperShopUser);
             return cart.GetTotal();
 
         }
@@ -51,7 +50,7 @@ namespace Aruhaz
 
         public double GetUserSuperShop(int ID)
         {
-            return superShop.GetUserSuperShopAmoun(ID);
+            return superShop.GetUserSuperShopAmount(ID);
         }
 
         public void RegisterComboDiscount(string comboOfProducts, int priceOfCombo, bool isClubOnly = false)

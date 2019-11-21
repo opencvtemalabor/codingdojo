@@ -209,5 +209,20 @@ namespace Aruhaz
 
         }
 
+        [Fact]
+        public void TestUserIdInCart()
+        {
+            Shop shop = new Shop();
+            shop.Register('A', 10);
+            shop.Register('B', 20);
+            shop.Register('C', 30);
+            shop.RegisterSuperShopUser(3);
+
+            shop.Total("CCC3CCCCCCC");  // user with id=3 gets 3 supershop points
+            var userPoints = shop.GetUserSuperShop(3);
+            var expected = 3;
+
+            Assert.Equal(expected, userPoints);
+        }
     }
 }

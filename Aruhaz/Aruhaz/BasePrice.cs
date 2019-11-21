@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Aruhaz
 {
-    class BasePrice : CartProcess,IDictionary<char,int>
+    class BasePrice : CartProcess, IDictionary<char,int>
     {
         private Dictionary<char, int> prices=new Dictionary<char, int>();
         public override void ApplyCart(Cart cart)

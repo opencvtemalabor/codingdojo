@@ -29,12 +29,12 @@ namespace Aruhaz
                     this.Add(new CartItem(character, 0));
 
                 else if (Char.IsLower(character) && character == 't')
-                                        IsClubMember = true;
+                    IsClubMember = true;
                 else if (Char.IsDigit(character))
                 {
                     //TODO
                 }
-                else if(Char.IsLower(character) && character == 'p')
+                else if (Char.IsLower(character) && character == 'p')
                 {
                     payWithSuperShopPoints = true;
                 }
